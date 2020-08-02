@@ -61,6 +61,7 @@ def Result1():
         count = 0.0
         flag = 0
         start_frame = 0
+        end_frame = 0
         status = {}
         annotation = ""
         # loop over frames from the video file stream
@@ -102,6 +103,7 @@ def Result1():
             alert = ["fire", "accident", "weight_lifting"]
 
             #currentFrame = 0
+            print(label, flag)
             if label in alert:
                 cv2.putText(output, text, (35, 50), cv2.FONT_HERSHEY_SIMPLEX,
                     1.25, (0, 0, 255), 5)
@@ -110,7 +112,9 @@ def Result1():
                     start_frame = count
                     flag = 1
             else:
-                pass
+                if flag == 1:
+                    end_frame = count
+                    flag = 2
 
                 #name = './frame/frame'+str(currentFrame)+'.jpg'
                 #cv2.imwrite(name,output)
@@ -147,6 +151,12 @@ def Result1():
         writer.release()
         vs.release()
         start_frame = start_frame//30
+        end_frame = end_frame // 30
+    if flag == 1:
+            end_frame = count
+            end_frame = end_frame // 30
+            flag = 2
+    print(start_frame, end_frame)
     return render_template('Result1.html', label=annotation, count=count, start_time=start_frame, status = status)
 
 
