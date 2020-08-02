@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <style>
+      .width{
+          height: 70px;
+        /* width: 100px; */
+      }
+      .bgColor{
+          background-color: #13204a;
+      }
+      li a:hover{
+          background-color: white;
+          color: black!important;
+         text-decoration: none!important;
+      }
+      ul{ 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;}
+    .positionAbsolute{
+        position: absolute;
+        bottom: 0px;
+    }
+    .positionRelative{
+        position: relative;
+    }
+  </style>
+</head>
+<body>
+    
+<div class="bgColor positionRelative">
+    
+    <div class="container ">
+        <div class="row">
+        <a class="navbar-brand col-3" href="#">
+            <img src="{{url_for('static', filename='Capture.PNG')}}" alt="Logo"  class="width img-fluid" />
+        </a>
+        <div class="col-8 pr-0 ml-auto my-auto">
+            <ul class=" d-flex justify-content-end ">
+                <li >
+                  <a class=" text-white font-weight-bolder px-3 py-2" href="/">HOME</a>
+                </li>
+                
+                <li class="pl-5">
+                  <a class=" text-white font-weight-bolder px-3 py-2" href="/prediction.html">PREDICTION</a>
+                </li>
+                <li class="pl-5">
+                    <a class=" text-white font-weight-bolder  px-3 py-2" href="/About_us.html">ABOUT US</a>
+                  </li>
+              </ul>
+        </div>
+
+    </div>
+</div>
+</div>
+<div class="container py-3">
+    <h6>
+        Add your text here.....
+    </h6>
+</div>
+<footer class="positionAbsolute container-fluid">
+    <div class="bgColor row ">
+        <p class="col-12 text-white text-center pt-3 ">&copy; Copyright . All Rights Reserved</p>
+    </div>
+</footer>
+
+
+</body>
+</html>

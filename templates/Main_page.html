@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Home page</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+  <style>
+  .blueBg{
+      background-color: #13204a;
+    }
+  li .nav-link:hover{
+     background-color: white;
+     color: black!important;
+  }
+  .p-50{
+      padding-left: 80px;
+      padding-right: 80px;
+  }
+  .mb-50{
+      margin-bottom: 80px;
+  }
+.icons{
+    font-size: 1.5em;
+}
+.icons:hover,.box:hover{
+    /* color: rgb(162, 167, 170); */
+    background-color:#d5d7df ;
+<!--    color: white;-->
+}
+.relative{
+    position: relative;
+     /* top: 20px;  */
+     box-shadow: 0 4px 8px 0 rgba(3, 3, 3, 0.9), 0 6px 20px 0 rgba(10, 9, 9, 0.19);
+      /* width:10px;   */
+     height: 685px;
+}
+
+.b-0{
+    position:absolute;
+    bottom: 20px;}
+
+ul{ 
+    list-style-type: none;
+    margin: 0;
+    padding: 0;}
+    .box{
+        width: 38px;
+        height: 38px;
+        color:#13204a ;
+        background-color: white;
+        display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    }
+    
+</style>
+</head>
+<body>
+<div class="container-fluid">
+<div class="row justify-content-around">
+    <div class="col-5">
+        <img src="{{url_for('static', filename='logo.JPG')}}" class="img-fluid mx-auto" alt="mainPageImage"/>
+    </div>
+    <div class="col-6 blueBg text-white p-50  relative">
+        <nav class="navbar navbar-expand-sm mb-50  px-0 pt-2">
+
+            <!-- Links -->
+            <ul class="navbar-nav col-12  d-flex ">
+              <li class="nav-item pr-5">
+                <a class="nav-link text-white font-weight-bolder" href="/">HOME</a>
+              </li>
+              
+              <li class="nav-item px-5">
+                <a class="nav-link text-white font-weight-bolder" href="/prediction.html">PREDICTION</a>
+              </li>
+              <li class="nav-item px-5">
+                <a class="nav-link text-white font-weight-bolder" href="/About_us.html">ABOUT US</a>
+              </li>
+            </ul>
+          
+        </nav>
+          <h1 class="text-white  mb-4">Welcome</h1>
+          <p class="text-white  ">Add you text here..</p>
+        <div class="b-0">
+          <p class="text-white mb-1">abc@gmail.com</p>
+          <p class="text-white ">123-456-789</p>
+          <div class="social   "> 
+            <ul class="d-flex ">
+                <li class="mr-1  box "><i class="fab fa-facebook-f icons " ></i></li>
+                <li class="mr-1  box"><i class="fab fa-google icons "></i></li>
+                <li class="mr-1  box"><i class="fab fa-twitter icons"></i></li>
+            </ul>
+                
+         </div>
+        </div>
+    </div>
+</div>
+</div>
+
+</body>
+</html>

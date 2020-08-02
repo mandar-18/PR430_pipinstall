@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Title</title>
+</head>
+<body>
+<div class="container-md pt-3 p-3 my-2 bg-primary text-center text-white">
+        <h1>Unusual Video Detection</h1>
+    </div>
+<div class="container">
+        <h3>Please select appropriate and related data for you prediction</h3>
+</div>
+<div class="container">
+<form action="{{url_for('result')}}" method="POST">
+    <div class="form-group">
+        <label>Select your model path: </label>
+        <input type="text" id="model" name="model">
+    </div>
+    <div class="form-group">
+        <label>Select your pickle path: </label>
+        <input type="text" id="pickle" name="pickle">
+    </div>
+    <div class="form-group">
+        <label>Select your input video path: </label>
+        <input type="text" id="inp_video" name="inp_video">
+    </div>
+    <div class="form-group">
+        <label>Select your output video path: </label>
+        <input type="text" id="out_video" name="out_video">
+    </div>
+    <div class="form-group">
+        <label>Size of EPOCH: </label>
+        <input type="text" id="size" name="size">
+    </div>
+    <input class="btn btn-primary" type="submit" value="Submit"><br>
+</form>
+</div>
+</body>
+</html>
