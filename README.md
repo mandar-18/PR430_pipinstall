@@ -28,6 +28,7 @@ More research to be done on the labels, as very it can detect presently. More da
 - A Flask server will run. Type 127.0.0.1:5000 in your browser.
 - Type in the name of video you want to give input to the system. The video to be saved in example_clips folder in your project root. A sample video has been included in the       same.
 - The process will start and another window will open which will show video footage along with on screen messages if unusual event occurs.
+- For storing the output, just create an output folder in project root. 
 
 
 **Requirements**
