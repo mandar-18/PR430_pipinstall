@@ -6,6 +6,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+    $("document").ready(function(){
+
+      $("#userName").blur(function(){
+        if($("#userName").val() != "pip"){
+
+          $("#nameErrorMsg").text("Please enter valid user name").css("color", "red");
+        }
+        else{
+          $("#nameErrorMsg").text("").css("color", "red");
+        }
+      });
+      $("#pass").blur(function(){
+        if($("#pass").val() != "pip"){
+
+          $("#passErrorMsg").text("Please enter valid user name").css("color", "red");
+        }
+        else{
+          $("#passErrorMsg").text("").css("color", "red");
+        }
+      });
+
+      //
+      $("#submit").click(function(){
+        if(($("#userName").val() != "pip")&&$("#userName").val() == ""){
+
+          $("#nameErrorMsg").text("Please enter valid user name").css("color", "red");
+        }
+
+        if(($("#pass").val() != "pip")&&$("#pass").val() == ""){
+
+         $("#passErrorMsg").text("Please enter valid password").css("color", "red");
+       }
+        if (($("#userName").val() == "pip")&&($("#pass").val()=="pip") ){
+        //  window.location.assign("prediction.html");
+          window.location.href="prediction.html";
+        }
+
+      });
+    })
+  </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -57,6 +98,18 @@ ul{
     justify-content: space-evenly;
     align-items: center;
     }
+    .modal ::-webkit-input-placeholder {
+
+            color: grey;
+            font-size: 12px;
+         }
+         .form-control:focus{
+           box-shadow: none;
+           border-color: #ced4da;
+         }
+         .btn:focus {
+    box-shadow: none;
+}
     
 </style>
 </head>
@@ -76,7 +129,7 @@ ul{
               </li>
               
               <li class="nav-item px-5">
-                <a class="nav-link text-white font-weight-bolder" href="/prediction.html">PREDICTION</a>
+                <a class="nav-link text-white font-weight-bolder" href="/prediction.html"  data-toggle="modal" data-target="#prediction">PREDICTION</a>
               </li>
               <li class="nav-item px-5">
                 <a class="nav-link text-white font-weight-bolder" href="/About_us.html">ABOUT US</a>
@@ -84,10 +137,11 @@ ul{
             </ul>
           
         </nav>
-          <h1 class="text-white  mb-4">Welcome</h1>
-          <p class="text-white  ">Add you text here..</p>
+          <h1 class="text-white  mb-4">PR430</h1>
+          <p class="text-white  ">Unusual Event Detection from Surveillance Video Shots
+</p>
         <div class="b-0">
-          <p class="text-white mb-1">abc@gmail.com</p>
+          <p class="text-white mb-1">Designed by: pip_install MGMCET, Navi mumbai</p>
           <p class="text-white ">123-456-789</p>
           <div class="social   "> 
             <ul class="d-flex ">
@@ -100,6 +154,35 @@ ul{
         </div>
     </div>
 </div>
+</div>
+<div class="modal fade" id="prediction"  data-backdrop="static" data-keyboard="false">
+  <div class="modal-dialog modal-dialog-centered">
+     <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+           <h6 class="modal-title text-center mx-auto">Authetication..</h6>
+           <!-- <button type="button" class="close lineHeight" data-dismiss="modal">&times;</button> -->
+        </div>
+        <!-- Modal body -->
+        <div class="modal-body">
+
+           <div class="form-group row mb-2">
+              <label for="userName" class="col-5 text-right" >Name</label>
+              <input type="text" class="form-control col-5 mr-auto" id="userName" autocomplete="off" placeholder="User Name">
+              <p id="nameErrorMsg" class="col-7 pl-0 small pr-5 ml-auto"></p>
+           </div>
+           <div class="form-group row mb-0">
+            <label for="pass" class="col-5 text-right" >Password</label>
+            <input type="password" class="form-control col-5 mr-auto" id="pass" autocomplete="off" placeholder="Please enter your password">
+            <p id="passErrorMsg" class="col-7 pl-0 small pr-5 ml-auto"></p>
+         </div>
+        </div>
+        <!-- Modal footer -->
+        <div class="modal-footer p-1">
+           <button type="button"  class="btn blueBg text-light mx-auto btn-small"  id="submit">Submit</button>
+        </div>
+     </div>
+  </div>
 </div>
 
 </body>

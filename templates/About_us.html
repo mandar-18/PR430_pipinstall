@@ -33,6 +33,20 @@
     .positionRelative{
         position: relative;
     }
+.form-control:focus{
+           box-shadow: none;
+           border-color: #ced4da;
+         }
+         .btn:focus {
+    box-shadow: none;
+}
+.p{
+  position: absolute;
+  bottom: 20px;
+  left:44%;
+  width: 200px;
+  opacity: 0.4;
+}
   </style>
 </head>
 <body>
@@ -67,9 +81,12 @@
         Add your text here.....
     </h6>
 </div>
+<div >
+  <img src="{{url_for('static', filename='logo.JPG')}}" class="p ">
+</div>
 <footer class="positionAbsolute container-fluid">
     <div class="bgColor row ">
-        <p class="col-12 text-white text-center pt-3 ">&copy; Copyright . All Rights Reserved</p>
+        <p class="col-12 text-white text-center pt-3 ">Designed by: pip_install MGMCET, Navi mumbai</p>
     </div>
 </footer>
 

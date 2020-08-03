@@ -40,12 +40,24 @@
             border: 1.5px solid #13204a;
             
     }
-    body{
-        background-color: #eeeff1;
-    }
+
     input[type=text]{
         background-color: #eeeff1;
     }
+    .form-control:focus{
+           box-shadow: none;
+           border-color: #ced4da;
+         }
+         .btn:focus {
+    box-shadow: none;
+}
+.p{
+  position: absolute;
+  bottom: 20px;
+  left:44%;
+  width: 200px;
+  opacity: 0.4;
+}
     
   </style>
 </head>
@@ -78,31 +90,31 @@
 </div>
 <div class="container  pt-3 pb-5 bg-light border ">
     <form class=" " action="{{url_for('Result1')}}" method="POST">
-        <div class="form-group row mx-auto">
-          <label class="col-4 text-right pr-5 ">Select your model path:</label>
-          <input type="text" class="form-control col-5 " placeholder="Enter..." id="model" name="model">
-            <p id="modelErrorMsg"></p>
-        </div>
-        <div class="form-group row mx-auto">
-          <label class="col-4 text-right pr-5">Select your pickle path: </label>
-          <input type="text" class="form-control col-5" placeholder="Enter..." id="pickle" name="pickle">
-            <p id="pickleErrorMsg"></p>
-        </div>
+<!--        <div class="form-group row mx-auto">-->
+<!--          <label class="col-4 text-right pr-5 ">Select your model path:</label>-->
+<!--          <input type="text" class="form-control col-5 " placeholder="Enter..." id="model" name="model">-->
+<!--            <p id="modelErrorMsg"></p>-->
+<!--        </div>-->
+<!--        <div class="form-group row mx-auto">-->
+<!--          <label class="col-4 text-right pr-5">Select your pickle path: </label>-->
+<!--          <input type="text" class="form-control col-5" placeholder="Enter..." id="pickle" name="pickle">-->
+<!--            <p id="pickleErrorMsg"></p>-->
+<!--        </div>-->
         <div class="form-group row mx-auto">
           <label class="col-4 text-right pr-5">Select your input video path: </label>
-          <input type="text" class="form-control col-5" placeholder="Enter..." id="inp_video" name="inp_video">
+          <input type="text" class="form-control col-5" placeholder="Please provide .mp4" id="inp_video" name="inp_video">
             <p id="inp_videoErrorMsg"></p>
         </div>
-        <div class="form-group row mx-auto">
-          <label class="col-4 text-right pr-5">Select your input output path: </label>
-          <input type="text" class="form-control col-5" placeholder="Enter..." id="out_video" name="out_video">
-            <p id="out_videoErrorMsg"></p>
+<!--        <div class="form-group row mx-auto">-->
+<!--          <label class="col-4 text-right pr-5">Select your input output path: </label>-->
+<!--          <input type="text" class="form-control col-5" placeholder="Enter..." id="out_video" name="out_video">-->
+<!--            <p id="out_videoErrorMsg"></p>-->
 
-        </div>
-        <div class="form-group row mx-auto">
-          <label class="col-4 text-right pr-5">Size of EPOCH: </label>
-          <input type="text" class="form-control col-5" placeholder="Enter..." id="size" name="size">
-        </div>
+<!--        </div>-->
+<!--        <div class="form-group row mx-auto">-->
+<!--          <label class="col-4 text-right pr-5">Size of EPOCH: </label>-->
+<!--          <input type="text" class="form-control col-5" placeholder="Enter..." id="size" name="size">-->
+<!--        </div>-->
         <div class="col-9 pr-0">
         <button type="submit" class="btn btn-primary float-right h6 bgColor font-weight-bold  processBtn " >Process Video
             <!-- <span class="spinner-border spinner-border-sm"></span> -->
@@ -110,97 +122,24 @@
     </div>
       </form>
 </div>
+<div >
+  <img src="{{url_for('static', filename='logo.JPG')}}" class="p ">
+</div>
 <footer class="positionAbsolute container-fluid">
     <div class="bgColor row ">
-        <p class="col-12 text-white text-center pt-3 ">&copy; Copyright . All Rights Reserved</p>    
+        <p class="col-12 text-white text-center pt-3 ">Designed by: pip_install MGMCET, Navi mumbai</p>
     </div>
 </footer>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<!--
+
 <script>
 
   $(document).ready(function() {
     $(".processBtn").click(function() {
-      $(this).prop("disabled", true);
-      $(this).html(
-        `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Processing...`
-      ).css("backgroundColor","#13204a");
+     $(this).text("Proccessing...").css({"backgroundColor":"white","color":"#13204a"});
     });
-   For Model
-    $("#model").blur(function(){
-      var regEx = /^([A-Za-z0-9 ]{1,30}\.model)/;
-	var modelPath = $("#model").val();
-	if (modelPath != "") {
-		if (regEx.test(modelPath)) {
-			$("#modelErrorMsg").text('');
-		} else {
-			$("#modelErrorMsg").text('Please enter valid player name(min 3 character required)').css("color", "red");
-			$("#modelErrorMsg").focus();
-		}
-	} else {
-		$("#modelErrorMsg").text('Field must be filled').css("color", "red");
-		$("#modelErrorMsg").focus();
-	}
-});
-
-	For Pickle-->
-<!--
-$("#pickle").keyup(function(){
-      var regEx = /^([A-Za-z0-9 ]{1,30}\.pickle)/;
-	var picklePath = $("#pickle").val();
-	if (picklePath != "") {
-		if (regEx.test(modelPath)) {
-			$("#pickleErrorMsg").text('');
-		} else {
-			$("#pickleErrorMsg").text('Please enter valid player name(min 3 character required)').css("color", "red");
-			$("#pickleErrorMsg").focus();
-		}
-	} else {
-		$("#pickleErrorMsg").text('Field must be filled').css("color", "red");
-		$("#pickleErrorMsg").focus();
-	}
-});
--->
-<!--    For Input video-->
-<!--
-$("#inp_video").keyup(function(){
-      var regEx = /^([A-Za-z0-9-_ ]{1,30}\.mp4)/;
-	var inp_videoPath = $("#inp_video").val();
-	if (inp_videoPath != "") {
-		if (regEx.test(inp_videoPath)) {
-			$("#inp_videoErrorMsg").text('');
-		} else {
-			$("#inp_videoErrorMsg").text('Please enter valid player name(min 3 character required)').css("color", "red");
-			$("#inp_videoErrorMsg").focus();
-		}
-	} else {
-		$("#inp_videoErrorMsg").text('Field must be filled').css("color", "red");
-		$("#inp_videoErrorMsg").focus();
-	}
-});
-
-    For Output video-->
-<!--
-$("#out_video").keyup(function(){
-      var regEx = /^([A-Za-z0-9-_ ]{1,30})\.avi)/;
-	var out_videoPath = $("#inp_video").val();
-	if (out_videoPath != "") {
-		if (regEx.test(out_videoPath)) {
-			$("#out_videoErrorMsg").text('');
-		} else {
-			$("#out_videoErrorMsg").text('Please enter valid player name(min 3 character required)').css("color", "red");
-			$("#out_videoErrorMsg").focus();
-		}
-	} else {
-		$("#out_videoErrorMsg").text('Field must be filled').css("color", "red");
-		$("#out_videoErrorMsg").focus();
-	}
-});
-
-});
-
-  </script>
--->
+    });
+ </script>
  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
 

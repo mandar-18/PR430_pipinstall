@@ -34,8 +34,10 @@ def about_us():
 def Result1():
     global annotation
     if request.method == 'POST':
-        MODEL_PATH = 'model/model.model'
-        PICKLE_PATH = 'model/model.pickle'
+        MODEL_PATH = 'model/final.model'
+        PICKLE_PATH = 'model/final.pickle'
+        #MODEL_PATH = 'model/real_time.model'
+        #PICKLE_PATH = 'model/real_time.pickle'
         INPUT_VIDEO = request.form['inp_video']
         out = INPUT_VIDEO.split('.')
         INPUT_VIDEO = 'example_clips/'+request.form['inp_video']
@@ -56,8 +58,8 @@ def Result1():
 
         # initialize the video stream, pointer to output video file, and
         # frame dimensions
-        #vs = cv2.VideoCapture(INPUT_VIDEO)
-        vs = cv2.VideoCapture(0)
+        vs = cv2.VideoCapture(INPUT_VIDEO)
+        #vs = cv2.VideoCapture(0)
         writer = None
         (W, H) = (None, None)
 
@@ -67,6 +69,7 @@ def Result1():
         end_frame = 0
         status = {}
         annotation = ""
+        que = deque()
         # loop over frames from the video file stream
         while True:
             # read the next frame from the file
@@ -98,26 +101,35 @@ def Result1():
             results = np.array(Q).mean(axis=0)
             i = np.argmax(results)
             label = lb.classes_[i]
-
+            if len(que) == 30:
+               que.popleft()
+            if len(que) != 30:
+               que.append(label)
+            noOfAlerts = que.count("fire") + que.count("accident")
+            if que.count("fire") > que.count("accident"):
+                caseDetect = "fire"
+            else:
+                caseDetect = "accident"
             # draw the activity on the output frame
             text = "Alert!!: {}".format(label)
 
             # Changes starts here
-            alert = ["fire", "accident", "weight_lifting", "gunfight"]
+            alert = ["fire", "accident"]
 
             #currentFrame = 0
-            print(label, flag)
-            if label in alert:
-                cv2.putText(output, text, (35, 50), cv2.FONT_HERSHEY_SIMPLEX,
-                    1.25, (0, 0, 255), 5)
-                if flag == 0:
-                    annotation = label
-                    start_frame = count
-                    flag = 1
-            else:
-                if flag == 1:
-                    end_frame = count
-                    flag = 2
+            #print(label, flag)
+            if len(que) == 30:
+                if caseDetect in alert and noOfAlerts > 20:
+                    cv2.putText(output, text, (35, 50), cv2.FONT_HERSHEY_SIMPLEX,
+                        1.25, (0, 0, 255), 5)
+                    if flag == 0:
+                        annotation = caseDetect
+                        start_frame = count - 20
+                        flag = 1
+                else:
+                    if flag == 1:
+                        end_frame = count - 10
+                        flag = 2
 
                 #name = './frame/frame'+str(currentFrame)+'.jpg'
                 #cv2.imwrite(name,output)
