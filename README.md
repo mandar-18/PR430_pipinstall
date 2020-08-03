@@ -22,7 +22,7 @@ Predicts if events happening in given videos or streams are normal or abnormal. 
 
 More research to be done on the labels, as very it can detect presently. More data has to be generated in order to predict more accurately. A distributed architechture can be designed to overcome computing power scarcity.
 
-**How to implement this code?**
+**How to run this code?**
 
 - Run predict_videos.py.
 - A Flask server will run. Type 127.0.0.1:5000 in your browser.
