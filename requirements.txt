@@ -1,0 +1,8 @@
+numpy
+matplotlib
+tensorflow
+pickle
+opencv-python
+imutils
+flask
+smtplib
