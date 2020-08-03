@@ -33,4 +33,5 @@ More research to be done on the labels, as very it can detect presently. More da
 **Requirements**
 
 - Python 3
-- Module requirements are included in requirements.txt
+- Tensorflow 2
+- Other module requirements are included in requirements.txt
