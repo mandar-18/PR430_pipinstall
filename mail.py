@@ -9,7 +9,7 @@ def sendmail(to_email, message, Cofirmation_mail):
     try:
         with smtplib.SMTP("smtp.gmail.com", 587) as s:
             s.starttls()
-            s.login(from_email, "Mandar@18")
+            s.login(from_email, "********") #Removed password due to security reasons.Enter your credentials, or contact repo admin if you are SIH admin
             print("Sending Mail:", to_email)
             s.sendmail(from_email, to_email, message)
         response['email_status'] = "Success"
@@ -19,4 +19,4 @@ def sendmail(to_email, message, Cofirmation_mail):
 
     return response
 # if __name__ == "__main__":
-# sendmail("harshpatel682@gmail.com", "Hello", "Paid paisa")
+# sendmail()
