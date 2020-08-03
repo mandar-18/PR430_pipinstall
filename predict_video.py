@@ -34,12 +34,14 @@ def about_us():
 def Result1():
     global annotation
     if request.method == 'POST':
-        MODEL_PATH = 'model/'+request.form['model']
-        PICKLE_PATH = 'model/'+request.form['pickle']
+        MODEL_PATH = 'model/model.model'
+        PICKLE_PATH = 'model/model.pickle'
+        INPUT_VIDEO = request.form['inp_video']
+        out = INPUT_VIDEO.split('.')
         INPUT_VIDEO = 'example_clips/'+request.form['inp_video']
-        OUTPUT_VIDEO = 'output/'+request.form['out_video']
-        SIZE = request.form['size']
-        SIZE = int(SIZE)
+        out = out[0]
+        OUTPUT_VIDEO = 'output/' + out + '.avi'
+        SIZE = 128
 
         print(MODEL_PATH,PICKLE_PATH,INPUT_VIDEO,OUTPUT_VIDEO,SIZE)
         #load the trained model and label binarizer from disk
@@ -54,7 +56,8 @@ def Result1():
 
         # initialize the video stream, pointer to output video file, and
         # frame dimensions
-        vs = cv2.VideoCapture(INPUT_VIDEO)
+        #vs = cv2.VideoCapture(INPUT_VIDEO)
+        vs = cv2.VideoCapture(0)
         writer = None
         (W, H) = (None, None)
 
@@ -100,7 +103,7 @@ def Result1():
             text = "Alert!!: {}".format(label)
 
             # Changes starts here
-            alert = ["fire", "accident", "weight_lifting"]
+            alert = ["fire", "accident", "weight_lifting", "gunfight"]
 
             #currentFrame = 0
             print(label, flag)
@@ -157,8 +160,9 @@ def Result1():
             end_frame = end_frame // 30
             flag = 2
     print(start_frame, end_frame)
-    return render_template('Result1.html', label=annotation, count=count, start_time=start_frame, status = status)
+    return render_template('Result1.html', label=annotation, count=count, start_time=start_frame, end_time=end_frame,
+     status = status)
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

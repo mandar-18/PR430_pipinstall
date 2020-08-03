@@ -36,13 +36,13 @@ ap.add_argument("-l", "--label-bin", required=True,
 	help="path to output label binarizer")
 ap.add_argument("-e", "--epochs", type=int, default=25,
 	help="# of epochs to train our network for")
-ap.add_argument("-p", "--plot", type=str, default="plot.png",
+ap.add_argument("-p", "--plot", type=str, default="model_plot.png",
 	help="path to output loss/accuracy plot")
 args = vars(ap.parse_args())
 
 # initialize the set of labels from the spots activity dataset we are
 # going to train our network on
-LABELS = set(["accident", "dense_traffic", "fire", "sparse_traffic"])
+LABELS = set(['accident', 'fire', 'NormalEvent'])
 
 # grab the list of images in our dataset directory, then initialize
 # the list of data (i.e., images) and class images
@@ -74,6 +74,8 @@ for imagePath in imagePaths:
 # convert the data and labels to NumPy arrays
 data = np.array(data)
 labels = np.array(labels)
+print(data.shape)
+print(labels.shape)
 
 # perform one-hot encoding on the labels
 lb = LabelBinarizer()
@@ -140,31 +142,31 @@ model.compile(loss="categorical_crossentropy", optimizer=opt,
 # initialized with actual "learned" values versus pure random
 print("[INFO] training head...")
 H = model.fit(
-	x=trainAug.flow(trainX, trainY, batch_size=32),
-	steps_per_epoch=len(trainX) // 32,
+	x=trainAug.flow(trainX, trainY, batch_size=16),
+	steps_per_epoch=len(trainX) // 16,
 	validation_data=valAug.flow(testX, testY),
-	validation_steps=len(testX) // 32,
+	validation_steps=len(testX) // 16,
 	epochs=args["epochs"])
 
 # evaluate the network
 print("[INFO] evaluating network...")
-predictions = model.predict(x=testX.astype("float32"), batch_size=32)
+predictions = model.predict(x=testX.astype("float32"), batch_size=16)
 print(classification_report(testY.argmax(axis=1),
 	predictions.argmax(axis=1), target_names=lb.classes_))
 
 # plot the training loss and accuracy
-N = args["epochs"]
-plt.style.use("ggplot")
-plt.figure()
-plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
-plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
-plt.plot(np.arange(0, N), H.history["accuracy"], label="train_acc")
-plt.plot(np.arange(0, N), H.history["val_accuracy"], label="val_acc")
-plt.title("Training Loss and Accuracy on Dataset")
-plt.xlabel("Epoch #")
-plt.ylabel("Loss/Accuracy")
-plt.legend(loc="lower left")
-plt.savefig(args["plot"])
+#N = args["epochs"]
+#plt.style.use("ggplot")
+#plt.figure()
+#plt.plot(np.arange(0, N), H.history["loss"], label="train_loss")
+#plt.plot(np.arange(0, N), H.history["val_loss"], label="val_loss")
+#plt.plot(np.arange(0, N), H.history["accuracy"], label="train_acc")
+#plt.plot(np.arange(0, N), H.history["val_accuracy"], label="val_acc")
+#plt.title("Training Loss and Accuracy on Dataset")
+#plt.xlabel("Epoch #")
+#plt.ylabel("Loss/Accuracy")
+#plt.legend(loc="lower left")
+#plt.savefig(args["plot"])
 
 # serialize the model to disk
 print("[INFO] serializing network...")
